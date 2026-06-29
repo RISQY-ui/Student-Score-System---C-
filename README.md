@@ -28,19 +28,19 @@ Berikut adalah penjelasan detail bagaimana kode ini bekerja:
 ```cpp
 #include <iostream>
 #include <vector>
-#include <iomanip>
+using namespace std;
 ```
 
 · iostream : Untuk melakukan input (cin) dan output (cout) ke layar.
 · vector  : Untuk membuat array dinamis yang ukurannya bisa berubah sesuai jumlah nilai yang dimasukkan.
-· iomanip : Untuk mengatur format desimal (misalnya membatasi angka di belakang koma).
 
 2. Fungsi tampilkanNilai()
 
 ```cpp
-void tampilkanNilai(vector<int> nilai) {
-    for(int i = 0; i < nilai.size(); i++) {
-        cout << "Nilai ke-" << i + 1 << " : " << nilai[i] << endl;
+void tampilkanNilai(vector<int>nilai){
+     cout << "\nDaftar Nilai\n";
+     for(int i = 0; i < nilai.size(); i++){
+     cout << "nilai ke-" << i+1 << ":" << nilai[i] << endl;
     }
 }
 ```
@@ -50,12 +50,12 @@ Penjelasan: Fungsi ini menerima vector nilai, lalu melakukan perulangan sebanyak
 3. Fungsi tampilkanTotal()
 
 ```cpp
-int tampilkanTotal(vector<int> nilai) {
-    int total = 0;
-    for(int i = 0; i < nilai.size(); i++) {
-        total += nilai[i];
+int tampilkanTotal(vector<int>nilai){
+       int total = 0;
+      for(int i = 0; i < nilai.size(); i++){
+       total += nilai[i];
     }
-    return total;
+ return total;
 }
 ```
 
@@ -64,26 +64,26 @@ Penjelasan: Fungsi ini menjumlahkan seluruh elemen di dalam vector menggunakan p
 4. Fungsi tampilkanTinggi() dan tampilkanRendah()
 
 ```cpp
-int tampilkanTinggi(vector<int> nilai) {
-    int max = nilai[0]; // Anggap nilai pertama adalah yang tertinggi
-    for(int i = 1; i < nilai.size(); i++) {
-        if(nilai[i] > max) {
-            max = nilai[i]; // Update jika ada nilai yang lebih tinggi
-        }
-    }
-    return max;
+int tampilkanTinggi(vector<int>nilai){
+      int max = nilai[0];
+    for(int i = 1; i < nilai.size(); i++){
+       if(nilai[i] > max){
+        max = nilai[i];
+   }
+}
+return max;
 }
 ```
 
 ```cpp
-int tampilkanRendah(vector<int> nilai) {
-    int min = nilai[0]; // Anggap nilai pertama adalah yang terendah
-    for(int i = 1; i < nilai.size(); i++) {
-        if(nilai[i] < min) {
-            min = nilai[i]; // Update jika ada nilai yang lebih rendah
-        }
-    }
-    return min;
+int tampilkanRendah(vector<int>nilai){
+      int min = nilai[0];
+    for(int i = 1; i < nilai.size(); i++){
+       if(nilai[i] < min){
+        min = nilai[i];
+   }
+}
+return min;
 }
 ```
 
@@ -92,36 +92,39 @@ Penjelasan: Kedua fungsi ini mencari nilai maksimum dan minimum dengan cara memb
 5. Fungsi main()
 
 ```cpp
-int main() {
-    string nama;
-    int jumlah;
-    vector<int> nilai;
+int main(){
+  string nama;
+  int jumlah;
+  vector<int>nilai;
+      
+        cout << "===nilai sekolah===\n\n";
+         cout<< "masukan nama anda :";
+        cin >> nama;
 
-    cout << "Masukkan nama anda  : ";
-    cin >> nama;
-
-    cout << "Jumlah nilai        : ";
-    cin >> jumlah;
-
-    for(int i = 0; i < jumlah; i++) {
-        int n;
-        cout << "Nilai ke-" << i + 1 << "     : ";
-        cin >> n;
-        nilai.push_back(n); // Memasukkan nilai ke dalam vector
+          cout<< "jumlah nilai : ";
+           cin >> jumlah;
+  
+    for(int i = 0; i < jumlah; i++){
+    int n;
+     
+      cout << "nilai ke-" << i + 1 << ":";
+     cin >> n;
+    
+     nilai.push_back(n);
     }
+       tampilkanNilai(nilai);
 
-    // Memanggil fungsi-fungsi yang sudah dibuat
-    tampilkanNilai(nilai);
+int total = tampilkanTotal(nilai);
 
-    int total = tampilkanTotal(nilai);
-    double rata = (double)total / nilai.size();
-
-    // Menampilkan hasil akhir
-    cout << "\nNama siswa        : " << nama << endl;
-    cout << "Total nilai       : " << total << endl;
-    cout << "Rata-rata         : " << fixed << setprecision(2) << rata << endl;
-    cout << "Nilai tertinggi   : " << tampilkanTinggi(nilai) << endl;
-    cout << "Nilai terendah    : " << tampilkanRendah(nilai) << endl;
+  double rata = (double)total / nilai.size();
+  cout << "\n======================\n" << endl;
+  cout << "Nama  : " << nama << endl;
+  cout << "Total      : "<< total << endl;
+  cout <<"Rata-rata    :  "<< rata << endl;
+  cout << "Nilai tinggi   : "<< tampilkanTinggi(nilai) << endl;
+  cout <<"Nilai rendah   : " << tampilkanRendah(nilai) << endl;
+  
+ return 0;
 }
 ```
 
@@ -142,30 +145,30 @@ Penjelasan: Inilah bagian utama program. Program meminta input nama dan jumlah n
 📝 Contoh Output Program
 
 ```text
-=== PROGRAM NILAI SISWA ===
-===========================
-Masukkan nama anda  : Faris
-Jumlah nilai        : 5
-Nilai ke-1     : 80
-Nilai ke-2     : 90
-Nilai ke-3     : 75
-Nilai ke-4     : 85
-Nilai ke-5     : 95
+===nilai sekolah===
 
-=== Daftar Nilai ===
-Nilai ke-1 : 80
-Nilai ke-2 : 90
-Nilai ke-3 : 75
-Nilai ke-4 : 85
-Nilai ke-5 : 95
+masukan nama anda :Faris
+jumlah nilai : 5
+nilai ke-1:80
+nilai ke-2:90
+nilai ke-3:75
+nilai ke-4:85
+nilai ke-5:95
 
-===========================
-Nama siswa        : Faris
-Total nilai       : 425
-Rata-rata         : 85.00
-Nilai tertinggi   : 95
-Nilai terendah    : 75
-===========================
+Daftar Nilai
+nilai ke-1:80
+nilai ke-2:90
+nilai ke-3:75
+nilai ke-4:85
+nilai ke-5:95
+
+======================
+
+Nama  : Faris
+Total      : 425
+Rata-rata    :  85
+Nilai tinggi   : 95
+Nilai rendah   : 75
 ```
 
 ---
